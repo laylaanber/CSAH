@@ -735,7 +735,7 @@
             ]
           },
           {
-            "courseId": "230101",
+            "courseId": "2300101",
             "courseName": "الحضارة العربية الإسلامية",
             "sections": [
               {"section": 1, "days": "Sunday-Tuesday", "time": "14:30 - 15:30"},
@@ -746,7 +746,7 @@
             ]
           },
           {
-            "courseId": "230102",
+            "courseId": "2300102",
             "courseName": "الاردن تاريخ و حضارة",
             "sections": [
               {"section": 1, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
@@ -1070,7 +1070,7 @@
             ]
           },
           {
-            "courseId": "3410103",
+            "courseId": "3420101",
             "courseName": "مهارات التعلم والبحث العلمي",
             "sections": [
               {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},

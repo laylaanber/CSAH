@@ -17,7 +17,7 @@
     "gradeType": "regular"
   },
   {
-    "courseId": "3400101",
+    "courseId": "3420101",
     "courseName": "مهارات التعلم والبحث العلمي",
     "description": "متطلبات الجامعة الإجبارية",
     "prerequisites": [],
@@ -25,7 +25,7 @@
     "gradeType": "regular"
   },
   {
-    "courseId": "3400102",
+    "courseId": "3410102",
     "courseName": "مهارات التواصل",
     "description": "متطلبات الجامعة الإجبارية",
     "prerequisites": [],
@@ -36,7 +36,7 @@
     "courseId": "3400103",
     "courseName": "مقدمة في الفلسفة والتفكير الناقد",
     "description": "متطلبات الجامعة الإجبارية",
-    "prerequisites": ["3400101"],
+    "prerequisites": ["3420101"],
     "creditHours": 3,
     "gradeType": "regular"
   },
@@ -85,7 +85,7 @@
     "subCategory": "المجموعة الاولى"
   },
   {
-    "courseId": "0300102",
+    "courseId": "0310102",
     "courseName": "الثقافة البيئية",
     "description": "متطلبات الجامعة الاختيارية",
     "prerequisites": [],
@@ -304,7 +304,7 @@
     }
   },
   {
-    "courseId": "0901431",
+    "courseId": "0904131",
     "courseName": "الرسم الهندسي والهندسة الوصفية",
     "description": "متطلبات الكلية الإجبارية",
     "prerequisites": [],
@@ -320,10 +320,10 @@
     }
   },
   {
-    "courseId": "0901701",
+    "courseId": "0907101",
     "courseName": "المهارات الحاسوبية للمهندسين",
     "description": "متطلبات الكلية الإجبارية",
-    "prerequisites": [],
+    "prerequisites": ["1932099"],
     "creditHours": 3,
     "gradeType": "regular",
     "details": {
@@ -336,7 +336,7 @@
     }
   },
   {
-    "courseId": "0966113",
+    "courseId": "0966111",
     "courseName": "مشاغل هندسية",
     "description": "متطلبات الكلية الإجبارية",
     "prerequisites": [],
@@ -504,7 +504,7 @@
     "courseId": "0907321",
     "courseName": "أنظمة اتصالات البيانات",
     "description": "متطلبات التخصص الإجبارية",
-    "prerequisites": ["0953321"],
+    "prerequisites": ["0963321"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -586,7 +586,7 @@
     }
   },
   {
-    "courseId": "0907422",
+    "courseId": "0907322",
     "courseName": "شبكات الحاسوب",
     "description": "متطلبات التخصص الإجبارية",
     "prerequisites": ["0907231"],
@@ -620,7 +620,7 @@
     }
   },
   {
-    "courseId": "0907500",
+    "courseId": "0947500",
     "courseName": "التدريب العملي (للحاسوب)",
     "description": "متطلبات التخصص الإجبارية",
     "prerequisites": [],
@@ -632,7 +632,7 @@
     "courseId": "0907520",
     "courseName": "أمن المعلومات والشبكات",
     "description": "متطلبات التخصص الإجبارية",
-    "prerequisites": ["0907422"],
+    "prerequisites": ["0907322"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -649,7 +649,7 @@
     "courseId": "0907528",
     "courseName": "مختبر شبكات الحاسوب",
     "description": "متطلبات التخصص الإجبارية",
-    "prerequisites": ["0907422"],
+    "prerequisites": ["0907322"],
     "creditHours": 1,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -887,7 +887,7 @@
     "courseId": "0917522",
     "courseName": "برمجة بروتوكولات الشبكات",
     "description": "متطلبات التخصص الإجبارية",
-    "prerequisites": ["0907342", "0907422"],
+    "prerequisites": ["0907342", "0907322"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -918,7 +918,7 @@
     }
   },
   {
-    "courseId": "0953321",
+    "courseId": "0963321",
     "courseName": "احتمالات ومتغيرات عشوائية",
     "description": "متطلبات التخصص الإجبارية",
     "prerequisites": ["0953221"],
@@ -969,7 +969,7 @@
     }
   },
   {
-    "courseId": "1902223",
+    "courseId": "1902224",
     "courseName": "مقدمة في نظم قواعد البيانات",
     "description": "متطلبات التخصص الإجبارية",
     "prerequisites": ["0907346"],
@@ -990,7 +990,7 @@
     "courseId": "0907523",
     "courseName": "الحوسبة السحابية",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["0907422"],
+    "prerequisites": ["0907322"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -1007,7 +1007,7 @@
     "courseId": "0907524",
     "courseName": "الشبكات اللاسلكية",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["0907422"],
+    "prerequisites": ["0907322"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
@@ -1039,9 +1039,9 @@
   },
   {
     "courseId": "0907531",
-    "courseName": "مواضيع متقدمة في هندسة الحاسوب",
+    "courseName":"مواضيع مختارة في هندسة الحاسوب",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["0907422", "0917432"],
+    "prerequisites": ["0907322", "0917432"],
     "creditHours": 3,
     "gradeType": "regular",
    "subCategory": "software",
@@ -1089,10 +1089,10 @@
     }
   },
   {
-    "courseId": "0907546",
+    "courseId": "0917546",
     "courseName": "تحليل البيانات الكبيرة",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["1902223"],
+    "prerequisites": ["1902224"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "hardware",
@@ -1109,7 +1109,7 @@
     "courseId": "0907547",
     "courseName": "حوسبة الهواتف الذكية",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["1902223"],
+    "prerequisites": ["1902224"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "software",
@@ -1211,7 +1211,7 @@
     "courseId": "0917521",
     "courseName": "انترنت الأشياء",
     "description": "متطلبات التخصص الاختيارية",
-    "prerequisites": ["0907333", "0907422"],
+    "prerequisites": ["0907333", "0907322"],
     "creditHours": 3,
     "gradeType": "regular",
     "subCategory": "networking",
