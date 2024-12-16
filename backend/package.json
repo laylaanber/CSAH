@@ -7,7 +7,7 @@
     "dev": "nodemon src/app.js",
     "seed:test": "node src/utils/seedTestUser.js",
     "seed:courses": "node src/utils/runSeeder.js",
-    "generate:sections": "node src/utils/generateAvailableSections.js",
+    "seed:sections": "node src/utils/seedSections.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "seed": "node src/utils/runSeeder.js"
