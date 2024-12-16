@@ -3,12 +3,15 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 const mongoose = require('mongoose');
 const CourseV2 = require('../models/CourseV2');
+const AvailableSectionV2 = require('../models/AvailableSectionV2');
+const courses = require('../data/courses.json');
+const sections = require('../data/courses_sections.json');
 const { validateCourseData, printValidationReport } = require('./courseValidator');
 
-async function seedCourses(coursesData) {
+async function seedData() {
     try {
         console.log('Validating course data...');
-        const validationResults = validateCourseData(coursesData);
+        const validationResults = validateCourseData(courses);
         printValidationReport(validationResults);
 
         // Log MongoDB URI (masked for security)
@@ -23,13 +26,14 @@ async function seedCourses(coursesData) {
         await mongoose.connect(uri);
         console.log('Successfully connected to MongoDB');
 
-        // Clear existing courses
-        console.log('Clearing existing courses...');
+        // Clear existing data
+        console.log('Clearing existing data...');
         await CourseV2.deleteMany({});
+        await AvailableSectionV2.deleteMany({});
 
         // Process course data before insertion
         console.log('Processing and inserting courses...');
-        const processedCourses = coursesData.map(course => ({
+        const processedCourses = courses.map(course => ({
             courseId: course.courseId,
             courseName: course.courseName,
             description: course.description,
@@ -50,7 +54,14 @@ async function seedCourses(coursesData) {
 
         // Insert courses
         const insertedCourses = await CourseV2.insertMany(processedCourses);
-        
+
+        // Seed sections
+        const availableSection = new AvailableSectionV2({
+            semester: sections.semester,
+            courses: sections.courses
+        });
+        await availableSection.save();
+
         // Generate summary statistics
         const summary = {
             totalInserted: insertedCourses.length,
@@ -72,16 +83,17 @@ async function seedCourses(coursesData) {
         console.log(`Courses with SubCategories: ${summary.withSubCategories}`);
         console.log(`Courses with Details: ${summary.withDetails}`);
         console.log(`Courses with Prerequisites: ${summary.withPrerequisites}`);
-        
+
         console.log('\nCourses by Description:');
         Object.entries(summary.byDescription).forEach(([desc, count]) => {
             console.log(`${desc}: ${count}`);
         });
 
+        console.log('Data seeded successfully');
         return { success: true, summary };
 
     } catch (error) {
-        console.error('Error during seeding:', error);
+        console.error('Error seeding data:', error);
         throw error;
     } finally {
         if (mongoose.connection.readyState === 1) {
@@ -91,4 +103,4 @@ async function seedCourses(coursesData) {
     }
 }
 
-module.exports = seedCourses;
+module.exports = seedData;

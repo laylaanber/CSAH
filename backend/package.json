@@ -9,7 +9,8 @@
     "seed:courses": "node src/utils/runSeeder.js",
     "generate:sections": "node src/utils/generateAvailableSections.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "seed": "node src/utils/runSeeder.js"
   },
   "keywords": [],
   "author": "",

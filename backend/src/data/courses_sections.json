@@ -1,0 +1,1111 @@
+{
+    "semester": "2024-1",
+    "courses": [
+        {
+            "courseId": "1932099",
+            "courseName": "أساسيات الحاسوب",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "8", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "9", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "10", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "11", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "12", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "13", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "14", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "15", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "16", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "17", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "18", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "19", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "20", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "21", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "22", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "23", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "24", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "25", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "26", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "27", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "28", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "29", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "30", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "31", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "32", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "33", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "34", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "35", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "36", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "37", "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "3201099",
+            "courseName": "أساسيات اللغة العربية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "8", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "9", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "10", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "11", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "12", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "13", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "14", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "15", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 19:00"},
+            {"section": "16", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "3201100",
+            "courseName": "مهارات اللغة العربية",
+            "sections": [
+            {"section": "1", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "4", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "5", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "6", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "7", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "8", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "9", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "10", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "11", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "12", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "13", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "14", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "15", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "16", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "17", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "18", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "19", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "20", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "21", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "22", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "23", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "24", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "25", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "26", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "27", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "28", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "29", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "30", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "31", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "32", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "33", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "34", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "35", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "36", "days": "Monday-Wednesday", "time": "13:30 - 14:30"},
+            {"section": "37", "days": "Monday-Wednesday", "time": "13:30 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "3202099",
+            "courseName": "أساسيات اللغة الإنجليزية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "8", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "9", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "10", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "11", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "12", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "13", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "14", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "15", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "16", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "17", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "18", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "19", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "20", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "21", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "22", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "23", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"},
+            {"section": "24", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "25", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "3202100",
+            "courseName": "مهارات اللغة الإنجليزية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "4", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "6", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "8", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "9", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 10:00"},
+            {"section": "10", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "11", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "12", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "13", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "14", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "15", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "16", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "17", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "18", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "19", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "20", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "21", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "22", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "23", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "24", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "25", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "26", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "27", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "28", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "29", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "30", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "31", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"},
+            {"section": "32", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "33", "days": "Sunday-Tuesday-Thursday", "time": "13:00 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "0907531",
+            "courseName": "مواضيع مختارة في هندسة الحاسوب",
+            "sections": [{"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"}]
+        },
+        {
+            "courseId": "0907543",
+            "courseName": "المترجمات محسنة الكفاءة",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0917441",
+            "courseName": "هندسة البرمجيات",
+            "sections": [{"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"}]
+        },
+        {
+            "courseId": "0917546",
+            "courseName": "تحليل البيانات الكبيرة",
+            "sections": [{"section": "1", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}]
+        },
+        {
+            "courseId": "1902224",
+            "courseName": "مقدمة في نظم قواعد البيانات",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "8", "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+            {"section": "9", "days": "Monday-Wednesday", "time": "14:30 - 16:00"}
+            ]
+        },
+        {
+            "courseId": "1901101",
+            "courseName": "رياضيات منفصلة",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"}
+            ]
+        },
+        {
+            "courseId": "0977598",
+            "courseName": "مشروع 1 للحاسوب",
+            "sections": [{"section": "1", "days": "N/A", "time": "00:00 - 00:00"}]
+        },
+        {
+            "courseId": "0977599",
+            "courseName": "مشروع 2 للحاسوب",
+            "sections": [{"section": "1", "days": "N/A", "time": "00:00 - 00:00"}]
+        },
+        {
+            "courseId": "0963321",
+            "courseName": "احتمالات ومتغيرات عشوائية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "08:30 - 10:00"}
+            ]
+        },
+        {
+            "courseId": "0953221",
+            "courseName": "تحليل اشارات وأنظمة",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": "4", "days": "Monday-Wednesday", "time": "08:30 - 10:00"}
+            ]
+        },
+        {
+            "courseId": "0947500",
+            "courseName": "التدريب العملي (للحاسوب)",
+            "sections": [{"section": "1", "days": "Sunday-Monday-Tuesday-Wednesday-Thursday", "time": "08:00 - 21:00"}]
+        },
+        {
+            "courseId": "0917522",
+            "courseName": "برمجة بروتوكلات الشبكات",
+            "sections": [{"section": "1", "days": "Monday-Wednesday", "time": "08:30 - 10:00"}]
+        },
+        {
+            "courseId": "0917462",
+            "courseName": "مختبر الالكترونيات الرقمية ودوائر التكامل الكبير جداً",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "3", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0917461",
+            "courseName": "الالكترونيات الرقمية ودوائر التكامل الكبير جداً",
+            "sections": [{"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"}]
+        },
+        {
+            "courseId": "0917451",
+            "courseName": "الذكاء الاصطناعي وتعلم الالة",
+            "sections": [{"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"}]
+        },
+        {
+            "courseId": "0917443",
+            "courseName": "نظم التشغيل الحديثة",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "10:00 - 11:30"}
+            ]
+        },
+        {
+            "courseId": "0917439",
+            "courseName": "مختبر تصميم الحاسوب",
+            "sections": [
+            {"section": "1", "days": "Tuesday", "time": "10:00 - 13:00"},
+            {"section": "2", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "3", "days": "Tuesday", "time": "13:00 - 16:00"}
+            ]
+        },
+        {
+            "courseId": "0917433",
+            "courseName": "انظمة التحكم باستخدام الحاسوب",
+            "sections": [{"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"}]
+        },
+        {
+            "courseId": "0917432",
+            "courseName": "معمارية وتنظيم الحاسوب (2)",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "10:00 - 11:30"}
+            ]
+        },
+        {
+            "courseId": "0917335",
+            "courseName": "معمارية وتنظيم الحاسوب (1)",
+            "sections": [
+            {"section": "1", "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"}
+            ]
+        },
+        {
+            "courseId": "0913214",
+            "courseName": "مختبر دارات كهربائية",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "3", "days": "Tuesday", "time": "13:00 - 16:00"},
+            {"section": "4", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0913213",
+            "courseName": "دارات كهربائية",
+            "sections": [
+            {"section": "1", "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0908321",
+            "courseName": "الالات الكهربائية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907537",
+            "courseName": "مختبر المعالجات المتوازية",
+            "sections": [
+            {"section": "1", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "2", "days": "Tuesday", "time": "13:00 - 16:00"},
+            {"section": "3", "days": "Tuesday", "time": "10:00 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907536",
+            "courseName": "المعالجات المتوازية",
+            "sections": [{"section": "1", "days": "Monday-Wednesday", "time": "10:00 - 11:30"}]
+        },
+        {
+            "courseId": "0907529",
+            "courseName": "مختبر الشبكات المتقدم",
+            "sections": [
+            {"section": "1", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "2", "days": "Tuesday", "time": "13:00 - 16:00"},
+            {"section": "3", "days": "Monday", "time": "10:00 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907528",
+            "courseName": "مختبر شبكات الحاسوب",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "3", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0907520",
+            "courseName": "أمن المعلومات والشبكات",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"}
+            ]
+        },
+        {
+            "courseId": "0907346",
+            "courseName": "تراكيب البيانات والخوارزميات",
+            "sections": [
+            {"section": "1", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907342",
+            "courseName": "حل المشاكل بالبرمجة الشيئية",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "3", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "4", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "5", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "6", "days": "Wednesday", "time": "13:00 - 16:00"},
+            {"section": "7", "days": "Thursday", "time": "13:30 - 16:30"},
+            {"section": "8", "days": "Monday", "time": "10:00 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907334",
+            "courseName": "مختبر الأنظمة المضمنة",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "3", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0907333",
+            "courseName": "الأنظمة المضمنة",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "08:30 - 10:00"}
+            ]
+        },
+        {
+            "courseId": "0907322",
+            "courseName": "شبكات الحاسوب",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "2", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0907321",
+            "courseName": "انظمة اتصالات البيانات",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"}
+            ]
+        },
+        {
+            "courseId": "0907313",
+            "courseName": "التحليل العددي العملي",
+            "sections": [
+            {"section": "1", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "2", "days": "Wednesday", "time": "10:00 - 13:00"},
+            {"section": "3", "days": "Wednesday", "time": "13:00 - 16:00"}
+            ]
+        },
+        {
+            "courseId": "0907311",
+            "courseName": "مختبر تطبيقات الحاسوب",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Monday", "time": "10:00 - 13:00"},
+            {"section": "3", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "4", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0907234",
+            "courseName": "مختبر المنطق الرقمي",
+            "sections": [
+            {"section": "1", "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": "2", "days": "Monday", "time": "10:00 - 13:00"},
+            {"section": "3", "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": "4", "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": "5", "days": "Wednesday", "time": "13:00 - 16:00"},
+            {"section": "6", "days": "Thursday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0907231",
+            "courseName": "المنطق الرقمي",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "08:30 - 10:00"}
+            ]
+        },
+        {
+            "courseId": "0903261",
+            "courseName": "الكترونيات (1)",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0303101",
+            "courseName": "الكيمياء العامة (1)",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": "7", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "8", "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+            {"section": "9", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "10", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "11", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "12", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "13", "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": "14", "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+            {"section": "15", "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+            {"section": "16", "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+            {"section": "17", "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+            {"section": "18", "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "0301241",
+            "courseName": "الجبر الخطي 1",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "3", "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": "4", "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0301131",
+            "courseName": "مبادىء الاحصاء",
+            "sections": [
+            {"section": "1", "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": "2", "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": "3", "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": "4", "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+            {"section": "5", "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+            {"section": "6", "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+            {"section": "7", "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": "8", "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+            {"section": "9", "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+            {"section": "10", "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+            {"section": "11", "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+        },
+        {
+            "courseId": "0302111",
+            "courseName": "الفيزياء العملية (1)",
+            "sections": [
+            {"section": 1, "days": "Sunday", "time": "09:30 - 12:30"},
+            {"section": 2, "days": "Sunday", "time": "09:30 - 12:30"},
+            {"section": 3, "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": 4, "days": "Monday", "time": "10:00 - 13:00"},
+            {"section": 5, "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": 6, "days": "Tuesday", "time": "09:30 - 12:30"},
+            {"section": 7, "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": 8, "days": "Wednesday", "time": "10:00 - 13:00"},
+            {"section": 9, "days": "Wednesday", "time": "13:00 - 16:00"},
+            {"section": 10, "days": "Thursday", "time": "09:30 - 12:30"}
+            ]
+        },
+        {
+            "courseId": "0302112",
+            "courseName": "الفيزياء العملية 2",
+            "sections": [
+            {"section": 1, "days": "Sunday", "time": "09:30 - 12:30"},
+            {"section": 2, "days": "Sunday", "time": "13:30 - 16:30"},
+            {"section": 3, "days": "Monday", "time": "10:00 - 13:00"},
+            {"section": 4, "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": 5, "days": "Tuesday", "time": "09:30 - 12:30"},
+            {"section": 6, "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": 7, "days": "Wednesday", "time": "10:00 - 13:00"},
+            {"section": 8, "days": "Wednesday", "time": "13:00 - 16:00"},
+            {"section": 9, "days": "Thursday", "time": "09:30 - 12:30"}
+            ]
+        },
+        {
+            "courseId": "0901420",
+            "courseName": "اقتصاد هندسي",
+            "sections": [
+            {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": 2, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": 3, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+            {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+            {"section": 5, "days": "Monday-Wednesday", "time": "16:30 - 18:00"}
+            ]
+        },
+        {
+            "courseId": "0904131",
+            "courseName": "الرسم الهندسي والهندسة الوصفية",
+            "sections": [
+            {"section": 1, "days": "Sunday-Tuesday", "time": "08:30 - 11:30"},
+            {"section": 2, "days": "Sunday-Tuesday", "time": "08:30 - 11:30"},
+            {"section": 3, "days": "Sunday-Tuesday", "time": "08:30 - 11:30"},
+            {"section": 4, "days": "Sunday-Tuesday", "time": "11:30 - 14:30"},
+            {"section": 5, "days": "Monday-Wednesday", "time": "08:30 - 11:30"},
+            {"section": 6, "days": "Monday-Wednesday", "time": "11:30 - 14:30"},
+            {"section": 7, "days": "Monday-Wednesday", "time": "14:30 - 17:30"}
+            ]
+        },
+        {
+            "courseId": "0907101",
+            "courseName": "المهارات الحاسوبية للمهندسين",
+            "sections": [
+            {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+            {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+            {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+            {"section": 4, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+            {"section": 5, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+            {"section": 6, "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+        },
+        {
+            "courseId": "0966111",
+            "courseName": "مشاغل هندسية",
+            "sections": [
+            {"section": 1, "days": "Tuesday", "time": "10:30 - 13:30"},
+            {"section": 2, "days": "Sunday", "time": "10:30 - 13:30"},
+            {"section": 3, "days": "Thursday", "time": "10:30 - 13:30"},
+            {"section": 4, "days": "Wednesday", "time": "10:00 - 13:00"},
+            {"section": 5, "days": "Monday", "time": "10:00 - 13:00"},
+            {"section": 6, "days": "Wednesday", "time": "13:00 - 16:00"},
+            {"section": 7, "days": "Monday", "time": "13:00 - 16:00"},
+            {"section": 8, "days": "Tuesday", "time": "13:30 - 16:30"},
+            {"section": 9, "days": "Sunday", "time": "13:30 - 16:30"}
+            ]
+        },
+        {
+            "courseId": "0302102",
+            "courseName": "الفيزياء العامة (2)",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 5, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 8, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 14, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "0302101",
+            "courseName": "الفيزياء العامة (1)",
+            "sections": [
+              {"section": 1, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "08:30 - 10:00"}
+            ]
+          },
+          {
+            "courseId": "0301201",
+            "courseName": "التفاضل والتكامل (3)",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 5, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 6, "days": "Monday-Wednesday", "time": "10:00 - 11:30"}
+            ]
+          },
+          {
+            "courseId": "0301102",
+            "courseName": "التفاضل والتكامل (2)",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "0301101",
+            "courseName": "التفاضل والتكامل (1)",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"}
+            ]
+          },
+          {
+            "courseId": "0400101",
+            "courseName": "الإسلام وقضايا العصر",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday", "time": "10:30 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Wednesday-Monday", "time": "14:30 - 16:00"},
+              {"section": 6, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Sunday-Tuesday", "time": "14:30 - 15:30"},
+              {"section": 8, "days": "Sunday-Tuesday", "time": "15:30 - 16:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 12, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 14, "days": "Wednesday-Monday", "time": "08:30 - 10:00"},
+              {"section": 15, "days": "Wednesday-Monday", "time": "10:00 - 11:30"},
+              {"section": 16, "days": "Wednesday-Monday", "time": "11:30 - 13:00"},
+              {"section": 17, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 19, "days": "Wednesday-Monday", "time": "08:30 - 10:00"},
+              {"section": 20, "days": "Wednesday-Monday", "time": "11:30 - 13:00"},
+              {"section": 21, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 22, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 23, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 200, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"}
+            ]
+          },
+          {
+            "courseId": "230101",
+            "courseName": "الحضارة العربية الإسلامية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday", "time": "14:30 - 15:30"},
+              {"section": 2, "days": "Wednesday-Monday", "time": "10:00 - 11:30"},
+              {"section": 3, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 4, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 5, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "230102",
+            "courseName": "الاردن تاريخ و حضارة",
+            "sections": [
+              {"section": 1, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 2, "days": "Monday-Wednesday", "time": "10:00 - 11:30"}
+            ]
+          },
+          {
+            "courseId": "3400108",
+            "courseName": "القدس",
+            "sections": [
+              {"section": 1, "days": "Thursday-Sunday-Tuesday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Thursday-Sunday-Tuesday", "time": "10:30 - 11:30"},
+              {"section": 3, "days": "Thursday-Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 4, "days": "Thursday-Sunday-Tuesday", "time": "14:30 - 15:30"},
+              {"section": 5, "days": "Thursday-Sunday-Tuesday", "time": "16:30 - 17:30"},
+              {"section": 6, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 10, "days": "Wednesday-Monday", "time": "16:00 - 17:30"}
+            ]
+          },
+          {
+            "courseId": "0310102",
+            "courseName": "الثقافة البيئية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 3, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"},
+              {"section": 4, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday", "time": "10:30 - 11:30"},
+              {"section": 6, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"},
+              {"section": 7, "days": "Sunday-Tuesday", "time": "09:30 - 10:30"},
+              {"section": 8, "days": "Sunday-Tuesday", "time": "08:30 - 09:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 12, "days": "Wednesday-Monday", "time": "11:30 - 13:00"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 200, "days": "Sunday-Tuesday", "time": "10:30 - 11:30"}
+            ]
+          },
+          {
+            "courseId": "0400102",
+            "courseName": "الثقافة الإسلامية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday", "time": "10:30 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"},
+              {"section": 6, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Sunday-Tuesday", "time": "14:30 - 15:30"},
+              {"section": 8, "days": "Sunday-Tuesday", "time": "15:30 - 16:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 14, "days": "Wednesday-Monday", "time": "08:30 - 10:00"},
+              {"section": 15, "days": "Wednesday-Monday", "time": "10:00 - 11:30"},
+              {"section": 19, "days": "Sunday-Tuesday", "time": "16:30 - 17:30"},
+              {"section": 20, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 200, "days": "Sunday-Tuesday", "time": "15:30 - 16:30"}
+            ]
+          },
+          {
+            "courseId": "0720100",
+            "courseName": "الثقافة الصحية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday", "time": "09:30 - 10:30"},
+              {"section": 2, "days": "Sunday-Tuesday", "time": "10:30 - 11:30"},
+              {"section": 3, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"},
+              {"section": 6, "days": "Sunday-Tuesday", "time": "12:30 - 13:30"},
+              {"section": 7, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 8, "days": "Sunday-Tuesday", "time": "13:30 - 14:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 12, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 13, "days": "Sunday-Tuesday", "time": "14:30 - 15:30"},
+              {"section": 200, "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+          },
+          {
+            "courseId": "1000102",
+            "courseName": "الثقافة القانونية",
+            "sections": [
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "1100100",
+            "courseName": "الثقافة البدنية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 12, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 13, "days": "Wednesday-Monday", "time": "10:00 - 11:30"},
+              {"section": 14, "days": "Wednesday-Monday", "time": "11:30 - 13:00"},
+              {"section": 15, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 200, "days": "Wednesday-Monday", "time": "13:00 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "1600100",
+            "courseName": "التجارة الإلكترونية",
+            "sections": [
+              {"section": 1, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 2, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 3, "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "1900101",
+            "courseName": "وسائل التواصل الاجتماعي",
+            "sections": [
+              {"section": 1, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 4, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 5, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 8, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 12, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 14, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 16, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 17, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 18, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 19, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 20, "days": "Monday-Wednesday", "time": "16:00 - 17:30"}
+            ]
+          },
+          {
+            "courseId": "2000100",
+            "courseName": "تذوق الفنون",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 3, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 4, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 6, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"}
+            ]
+          },
+          {
+            "courseId": "2200103",
+            "courseName": "اللغة الأجنبية",
+            "sections": [
+              {"section": 1, "days": "Wednesday", "time": "13:00 - 14:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 6, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "11:30 - 13:00"}
+            ]
+          },
+          {
+            "courseId": "3400106",
+            "courseName": "موضوع خاص",
+            "sections": [
+              {"section": 1, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 2, "days": "Wednesday-Monday", "time": "11:30 - 13:00"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 5, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 6, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 8, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 13, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 14, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 16, "days": "Wednesday-Monday", "time": "13:00 - 14:30"},
+              {"section": 17, "days": "Wednesday-Monday", "time": "11:30 - 13:00"}
+            ]
+          },
+          {
+            "courseId": "2220100",
+            "courseName": "العلوم العسكرية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 10, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 11, "days": "Monday-Wednesday", "time": "13:00 - 14:30"}
+            ]
+          },
+          {
+            "courseId": "3400100",
+            "courseName": "الثقافة الوطنية",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 6, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 7, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 13, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 14, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 16, "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+              {"section": 17, "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+              {"section": 18, "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+              {"section": 19, "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+              {"section": 20, "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+              {"section": 21, "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+              {"section": 22, "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+              {"section": 23, "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+              {"section": 24, "days": "Sunday-Tuesday-Thursday", "time": "19:30 - 20:30"},
+              {"section": 25, "days": "Sunday-Tuesday-Thursday", "time": "19:30 - 20:30"},
+              {"section": 26, "days": "Sunday-Tuesday-Thursday", "time": "19:30 - 20:30"},
+              {"section": 27, "days": "Sunday-Tuesday-Thursday", "time": "19:30 - 20:30"},
+              {"section": 28, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 29, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 30, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 31, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 32, "days": "Monday-Wednesday", "time": "17:30 - 19:00"},
+              {"section": 33, "days": "Monday-Wednesday", "time": "17:30 - 19:00"},
+              {"section": 34, "days": "Monday-Wednesday", "time": "17:30 - 19:00"},
+              {"section": 35, "days": "Monday-Wednesday", "time": "19:00 - 20:30"},
+              {"section": 36, "days": "Monday-Wednesday", "time": "19:00 - 20:30"},
+              {"section": 37, "days": "Monday-Wednesday", "time": "19:00 - 20:30"},
+              {"section": 38, "days": "Monday-Wednesday", "time": "14:30 - 16:00"}
+            ]
+          },
+          {
+            "courseId": "3400103",
+            "courseName": "مقدمة في الفلسفة والتفكير الناقد",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 8, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "17:30 - 18:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "18:30 - 19:30"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "19:30 - 20:30"},
+              {"section": 13, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 14, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 15, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 16, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 17, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 18, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 19, "days": "Monday-Wednesday", "time": "17:30 - 19:00"}
+            ]
+          },
+          {
+            "courseId": "3410102",
+            "courseName": "مهارات التواصل",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 7, "days": "Wednesday", "time": "10:00 - 11:30"},
+              {"section": 8, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 9, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 13, "days": "Wednesday", "time": "10:00 - 11:30"},
+              {"section": 14, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 16, "days": "Wednesday", "time": "10:00 - 11:30"},
+              {"section": 17, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 18, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 19, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 20, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 21, "days": "Wednesday", "time": "10:00 - 11:30"},
+              {"section": 22, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 23, "days": "Wednesday", "time": "11:30 - 13:00"},
+              {"section": 24, "days": "Wednesday", "time": "16:00 - 17:30"},
+              {"section": 25, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 26, "days": "Sunday-Tuesday-Thursday", "time": "16:30 - 17:30"},
+              {"section": 27, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 28, "days": "Wednesday", "time": "16:00 - 17:30"},
+              {"section": 29, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 201, "days": "Wednesday", "time": "16:00 - 17:30"}
+            ]
+          },
+          {
+            "courseId": "3410103",
+            "courseName": "مهارات التعلم والبحث العلمي",
+            "sections": [
+              {"section": 1, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 2, "days": "Sunday-Tuesday-Thursday", "time": "08:30 - 09:30"},
+              {"section": 3, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 4, "days": "Sunday-Tuesday-Thursday", "time": "09:30 - 10:30"},
+              {"section": 5, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 6, "days": "Sunday-Tuesday-Thursday", "time": "10:30 - 11:30"},
+              {"section": 7, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 8, "days": "Sunday-Tuesday-Thursday", "time": "11:30 - 12:30"},
+              {"section": 9, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 10, "days": "Sunday-Tuesday-Thursday", "time": "12:30 - 13:30"},
+              {"section": 11, "days": "Sunday-Tuesday-Thursday", "time": "13:30 - 14:30"},
+              {"section": 12, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 13, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 14, "days": "Sunday-Tuesday-Thursday", "time": "14:30 - 15:30"},
+              {"section": 15, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 16, "days": "Monday-Wednesday", "time": "08:30 - 10:00"},
+              {"section": 17, "days": "Wednesday", "time": "08:30 - 10:00"},
+              {"section": 18, "days": "Monday-Wednesday", "time": "10:00 - 11:30"},
+              {"section": 19, "days": "Wednesday", "time": "10:00 - 11:30"},
+              {"section": 20, "days": "Monday-Wednesday", "time": "11:30 - 13:00"},
+              {"section": 21, "days": "Wednesday", "time": "11:30 - 13:00"},
+              {"section": 22, "days": "Monday-Wednesday", "time": "13:00 - 14:30"},
+              {"section": 23, "days": "Wednesday", "time": "13:00 - 14:30"},
+              {"section": 24, "days": "Monday-Wednesday", "time": "14:30 - 16:00"},
+              {"section": 25, "days": "Wednesday", "time": "14:30 - 16:00"},
+              {"section": 26, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 27, "days": "Wednesday", "time": "16:00 - 17:30"},
+              {"section": 28, "days": "Monday-Wednesday", "time": "16:00 - 17:30"},
+              {"section": 29, "days": "Sunday-Tuesday-Thursday", "time": "15:30 - 16:30"},
+              {"section": 30, "days": "Wednesday", "time": "13:00 - 14:30"},
+              {"section": 31, "days": "Wednesday", "time": "14:30 - 16:00"},
+              {"section": 32, "days": "Wednesday", "time": "13:00 - 14:30"}
+            ]
+        }
+    ]
+}
