@@ -1,42 +1,48 @@
-/* frontend/src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '@fontsource/cairo';
-@import '@fontsource/tajawal';
-@import '@fontsource/roboto';
-@import '@fontsource/inter';
-/* Reset and base styles */
+
+/* Import fonts */
+@import '@fontsource/cairo/index.css';
+@import '@fontsource/tajawal/index.css';
+@import '@fontsource/roboto/index.css';
+@import '@fontsource/inter/index.css';
+
 @layer base {
+  :root {
+    --uj-green: #0C5A3E;
+    --uj-gold: #E0B740;
+    --uj-navy: #00263A;
+  }
+
   html {
     @apply antialiased;
   }
   
   body {
-    @apply bg-gray-50 text-gray-900 font-sans;
+    @apply bg-[#F8F8F8] font-english;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .font-arabic {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+  }
+
+  .font-english {
+    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
+  }
 }
 
-/* Layout */
 #root {
   @apply min-h-screen flex flex-col;
 }
 
-/* Container widths */
 .container {
   @apply mx-auto px-4 sm:px-6 lg:px-8;
   max-width: 1280px;
 }
 
-/* Font family stack */
-.font-sans {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-    'Helvetica Neue', Arial, sans-serif;
-}
-
-/* Remove tap highlight on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
 }
