@@ -228,190 +228,211 @@ function Preferences() {
     />
   );
 
-  return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Course Preferences</h1>
-        {formState === 'viewing' ? (
-          <button
-            onClick={() => setFormState('editing')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            Edit Preferences
-          </button>
-        ) : null}
+  // Add ActionButtons component
+  const ActionButtons = ({ formState, setFormState, onSubmit, saveStatus }) => {
+    if (formState === 'viewing') {
+      return (
+        <button
+          onClick={() => setFormState('editing')}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+          Edit Preferences
+        </button>
+      );
+    }
+
+    return (
+      <div className="flex space-x-4">
+        <button
+          type="button"
+          onClick={() => setFormState('viewing')}
+          className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          disabled={saveStatus.saving}
+        >
+          Cancel
+        </button>
+        <button
+          onClick={onSubmit}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+          disabled={saveStatus.saving}
+        >
+          {saveStatus.saving ? 'Saving...' : 'Save Preferences'}
+        </button>
       </div>
+    );
+  };
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Schedule Preferences Section */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Schedule Preferences</h2>
-
-          <div className="space-y-4">
-            {/* Days Preference */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Preferred Days
-              </label>
-              <select
-                value={preferences?.preferredDays || 'idc'}
-                onChange={(e) => setPreferences({
-                  ...preferences,
-                  preferredDays: e.target.value
-                })}
-                disabled={!formState === 'editing'}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
-              >
-                {daysOptions.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Break Preference */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Break Preference
-              </label>
-              <select
-                value={preferences.preferBreaks}
-                onChange={(e) => setPreferences({
-                  ...preferences,
-                  preferBreaks: e.target.value
-                })}
-                disabled={!isFormEditable}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
-              >
-                <option value="yes">Yes, I want breaks</option>
-                <option value="no">No breaks needed</option>
-                <option value="idc">Don't Care</option>
-              </select>
-            </div>
-
-            {/* Credit Hours */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Target Credit Hours
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="range"
-                  min="12"
-                  max="18"
-                  value={preferences.targetCreditHours}
-                  onChange={(e) => setPreferences({
-                    ...preferences,
-                    targetCreditHours: parseInt(e.target.value)
-                  })}
-                  disabled={!isFormEditable}
-                  className="flex-1 mr-4"
-                />
-                <span className="w-12 text-center">
-                  {preferences.targetCreditHours}
-                </span>
-              </div>
-            </div>
+  // Update main return statement
+  return (
+    <div className="min-h-screen relative">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50 bg-white shadow-md border-b">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold">Course Preferences</h1>
+            <ActionButtons 
+              formState={formState}
+              setFormState={setFormState}
+              onSubmit={handleSubmit}
+              saveStatus={saveStatus}
+            />
           </div>
         </div>
+      </div>
 
-        {/* Category Preferences Section */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Category Preferences</h2>
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Schedule Preferences Section */}
+          <div className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-lg font-medium mb-4">Schedule Preferences</h2>
 
-          <div className="grid grid-cols-1 gap-4">
-            {Object.entries(preferences.categoryPreferences).map(([category, rating]) => (
-              <div key={category} className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700 capitalize">
-                  {category}
-                </span>
+            <div className="space-y-4">
+              {/* Days Preference */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Preferred Days
+                </label>
                 <select
-                  value={rating}
+                  value={preferences?.preferredDays || 'idc'}
                   onChange={(e) => setPreferences({
                     ...preferences,
-                    categoryPreferences: {
-                      ...preferences.categoryPreferences,
-                      [category]: e.target.value
-                    }
+                    preferredDays: e.target.value
                   })}
                   disabled={!isFormEditable}
-                  className="ml-3 block w-32 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
                 >
-                  {ratingOptions.map(option => (
+                  {daysOptions.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
                   ))}
                 </select>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Course Improvement Preferences Section */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Course Improvement Preferences</h2>
+              {/* Break Preference */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Break Preference
+                </label>
+                <select
+                  value={preferences.preferBreaks}
+                  onChange={(e) => setPreferences({
+                    ...preferences,
+                    preferBreaks: e.target.value
+                  })}
+                  disabled={!isFormEditable}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
+                >
+                  <option value="yes">Yes, I want breaks</option>
+                  <option value="no">No breaks needed</option>
+                  <option value="idc">Don't Care</option>
+                </select>
+              </div>
 
-          <div className="space-y-4">
-            {/* Courses to Improve */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Courses to Improve
-              </label>
-              <CourseSelect
-                options={improvableCourses}
-                value={selectedCourses.improvable}
-                onChange={(value) => {
-                  setSelectedCourses(prev => ({ ...prev, improvable: value }));
-                }}
-                placeholder="Select courses to improve..."
-              />
-              <p className="mt-1 text-sm text-gray-500">
-                Select courses where you'd like to improve your grade (C- or lower)
-              </p>
+              {/* Credit Hours */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Target Credit Hours
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="range"
+                    min="12"
+                    max="18"
+                    value={preferences.targetCreditHours}
+                    onChange={(e) => setPreferences({
+                      ...preferences,
+                      targetCreditHours: parseInt(e.target.value)
+                    })}
+                    disabled={!isFormEditable}
+                    className="flex-1 mr-4"
+                  />
+                  <span className="w-12 text-center">
+                    {preferences.targetCreditHours}
+                  </span>
+                </div>
+              </div>
             </div>
+          </div>
 
-            {/* Specific Courses */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Specific Course Preferences
-              </label>
-              <CourseSelect
-                options={remainingCourses}
-                value={selectedCourses.specific}
-                onChange={(value) => {
-                  setSelectedCourses(prev => ({ ...prev, specific: value }));
-                }}
-                placeholder="Select specific courses..."
-              />
-              <p className="mt-1 text-sm text-gray-500">
-                Select specific courses you'd like to take this semester (only shows courses you're eligible to take)
-              </p>
+          {/* Category Preferences Section */}
+          <div className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-lg font-medium mb-4">Category Preferences</h2>
+
+            <div className="grid grid-cols-1 gap-4">
+              {Object.entries(preferences.categoryPreferences).map(([category, rating]) => (
+                <div key={category} className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700 capitalize">
+                    {category}
+                  </span>
+                  <select
+                    value={rating}
+                    onChange={(e) => setPreferences({
+                      ...preferences,
+                      categoryPreferences: {
+                        ...preferences.categoryPreferences,
+                        [category]: e.target.value
+                      }
+                    })}
+                    disabled={!isFormEditable}
+                    className="ml-3 block w-32 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 disabled:bg-gray-100"
+                  >
+                    {ratingOptions.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
 
-        {formState !== 'viewing' && (
-          <div className="flex justify-end space-x-4">
-            <button
-              type="button"
-              onClick={() => setFormState('viewing')}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-              disabled={saveStatus.saving}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-              disabled={saveStatus.saving}
-            >
-              {saveStatus.saving ? 'Saving...' : 'Save Preferences'}
-            </button>
+          {/* Course Improvement Preferences Section */}
+          <div className="bg-white shadow rounded-lg p-6">
+            <h2 className="text-lg font-medium mb-4">Course Improvement Preferences</h2>
+
+            <div className="space-y-4">
+              {/* Courses to Improve */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Courses to Improve
+                </label>
+                <CourseSelect
+                  options={improvableCourses}
+                  value={selectedCourses.improvable}
+                  onChange={(value) => {
+                    setSelectedCourses(prev => ({ ...prev, improvable: value }));
+                  }}
+                  placeholder="Select courses to improve..."
+                />
+                <p className="mt-1 text-sm text-gray-500">
+                  Select courses where you'd like to improve your grade (C- or lower)
+                </p>
+              </div>
+
+              {/* Specific Courses */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Specific Course Preferences
+                </label>
+                <CourseSelect
+                  options={remainingCourses}
+                  value={selectedCourses.specific}
+                  onChange={(value) => {
+                    setSelectedCourses(prev => ({ ...prev, specific: value }));
+                  }}
+                  placeholder="Select specific courses..."
+                />
+                <p className="mt-1 text-sm text-gray-500">
+                  Select specific courses you'd like to take this semester (only shows courses you're eligible to take)
+                </p>
+              </div>
+            </div>
           </div>
-        )}
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
