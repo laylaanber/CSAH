@@ -177,38 +177,58 @@ const authController = {
       const { passedCourses } = req.body;
       const studentId = req.student.studentId;
 
+      // Get all courses for credit hour calculation
       const allCourses = await CourseV2.find().lean();
-
-      let totalCreditHours = 0;
-      passedCourses.forEach(passedCourse => {
-        const course = allCourses.find(c => c.courseId === passedCourse.courseId);
-        if (course && 
-            course.description !== 'متطلبات إجبارية عامة' && 
-            !['F', 'D-'].includes(passedCourse.grade)) {
-          totalCreditHours += course.creditHours;
+      
+      // Calculate total credit hours excluding zero credit and failed courses
+      let totalCreditHours = passedCourses.reduce((sum, passedCourse) => {
+        // Skip failed courses
+        if (['F', 'D-'].includes(passedCourse.grade)) {
+          return sum;
         }
-      });
 
+        const course = allCourses.find(c => c.courseId === passedCourse.courseId);
+        
+        // Skip if course not found
+        if (!course) return sum;
+
+        // Skip zero credit courses
+        if (course.creditHours === 0) return sum;
+
+        // Add credits for passed متطلبات إجبارية عامة courses with 'P' grade
+        if (course.description === 'متطلبات إجبارية عامة') {
+          return passedCourse.grade === 'P' ? sum + course.creditHours : sum;
+        }
+
+        // Add credits for other passed courses
+        return sum + course.creditHours;
+      }, 0);
+
+      // Update student with new passed courses and credit hours
       const updatedStudent = await StudentV2.findOneAndUpdate(
         { studentId },
         { 
           completedCourses: passedCourses,
-          creditHours: totalCreditHours 
+          creditHours: totalCreditHours
         },
         { new: true }
-      ).lean();
+      );
 
       res.json({
         success: true,
+        message: 'Passed courses updated successfully',
         data: {
-          completedCourses: updatedStudent.completedCourses,
           creditHours: updatedStudent.creditHours,
-          student: updatedStudent
+          completedCourses: updatedStudent.completedCourses
         }
       });
+
     } catch (error) {
-      console.error('Update error:', error);
-      res.status(500).json({ success: false, message: error.message });
+      console.error('Error updating passed courses:', error);
+      res.status(500).json({
+        success: false,
+        message: error.message
+      });
     }
   },
 
