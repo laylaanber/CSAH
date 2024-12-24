@@ -140,19 +140,34 @@ const EditPassedCourses = () => {
       const updatedCourses = [...prev];
       const courseIndex = updatedCourses.findIndex(c => c.courseId === courseId);
 
+      // Handle grade change
       if (newGrade === '') {
         if (courseIndex !== -1) {
           updatedCourses.splice(courseIndex, 1);
         }
-      } else if (courseIndex !== -1) {
-        updatedCourses[courseIndex] = { ...updatedCourses[courseIndex], grade: newGrade };
       } else {
-        updatedCourses.push({
-          courseId,
-          grade: newGrade,
-          semester: `${new Date().getFullYear()}-${Math.floor(new Date().getMonth() / 6) + 1}`
-        });
+        const course = courses.find(c => c.courseId === courseId);
+        const isGeneralReq = course?.description === 'متطلبات إجبارية عامة';
+
+        if (courseIndex !== -1) {
+          updatedCourses[courseIndex] = { 
+            ...updatedCourses[courseIndex], 
+            grade: newGrade,
+            creditHours: course?.creditHours || 0
+          };
+        } else {
+          updatedCourses.push({
+            courseId,
+            grade: newGrade,
+            creditHours: course?.creditHours || 0,
+            semester: `${new Date().getFullYear()}-${Math.floor(new Date().getMonth() / 6) + 1}`
+          });
+        }
       }
+
+      // Debug total credit hours
+      const totalCredits = calculateTotalCreditHours(updatedCourses);
+      console.log('New total credits:', totalCredits);
 
       // Validate and update errors
       const validation = validateOptionalUniversityCourses(updatedCourses);
@@ -196,27 +211,10 @@ const EditPassedCourses = () => {
   };
 
   // Add credit hour calculation helper
-  const calculateTotalCreditHours = (passedCourses) => {
-    const baseCredits = passedCourses.reduce((total, passedCourse) => {
-      if (!passedCourse.grade || ['F', 'D-'].includes(passedCourse.grade)) {
-        return total;
-      }
-  
-      const course = courses.find(c => c.courseId === passedCourse.courseId);
-      if (!course || course.description === 'متطلبات إجبارية عامة') {
-        return total;
-      }
-  
-      // First calculate without constraint courses
-      if (!['0901420', '0977598', '0947500'].includes(course.courseId)) {
-        return total + course.creditHours;
-      }
-  
-      return total;
-    }, 0);
-  
-    // Now check constraint courses and add their credits if requirements are met
-    const constraintCredits = passedCourses.reduce((total, passedCourse) => {
+  const calculateTotalCreditHours = (coursesWithGrades) => {
+    // First calculate base credits without special courses
+    const baseCredits = coursesWithGrades.reduce((total, passedCourse) => {
+      // Skip if no grade or failed
       if (!passedCourse.grade || ['F', 'D-'].includes(passedCourse.grade)) {
         return total;
       }
@@ -224,19 +222,27 @@ const EditPassedCourses = () => {
       const course = courses.find(c => c.courseId === passedCourse.courseId);
       if (!course) return total;
   
-      switch (course.courseId) {
-        case '0901420': // اقتصاد هندسي
-          return baseCredits >= 90 ? total + 3 : total;
-        case '0977598': // مشروع 1
-          return baseCredits >= 120 ? total + 1 : total;
-        case '0947500': // التدريب العملي
-          return baseCredits >= 120 ? total + 3 : total;
-        default:
-          return total;
+      // Special handling for متطلبات إجبارية عامة courses
+      if (course.description === 'متطلبات إجبارية عامة') {
+        // Only count if grade is 'P'
+        return passedCourse.grade === 'P' ? total + (course.creditHours || 0) : total;
       }
+  
+      // Regular courses
+      return total + (course.creditHours || 0);
     }, 0);
   
-    return baseCredits + constraintCredits;
+    // Debug logging
+    console.log('Credit hours calculation:', {
+      coursesWithGrades: coursesWithGrades.map(c => ({
+        id: c.courseId,
+        grade: c.grade,
+        credits: courses.find(course => course.courseId === c.courseId)?.creditHours || 0
+      })),
+      baseCredits
+    });
+  
+    return baseCredits;
   };
 
   // Update validateOptionalUniversityCourses function

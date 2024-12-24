@@ -46,3 +46,9 @@
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+@layer components {
+  .progress-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+  }
+}
