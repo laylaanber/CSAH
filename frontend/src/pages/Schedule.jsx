@@ -5,7 +5,7 @@ import { ScheduleDetailModal } from '../components/schedule/ScheduleDetailModal'
 
 function Schedule() {
   const { schedule, loading, error, generateNewSchedule, acceptSchedule, rejectSchedule } = useSchedule();
-  
+
   // Add debugging logs
   console.log('Schedule component state:', {
     hasSchedule: !!schedule,
@@ -140,7 +140,7 @@ function Schedule() {
                 </p>
               </div>
 
-              {/* Add new distribution section */}
+              {/* Category Distribution section */}
               <div>
                 <p className="text-sm text-gray-500">Category Distribution</p>
                 <div className="mt-2 space-y-1">
@@ -148,7 +148,7 @@ function Schedule() {
                     Object.entries(schedule.metrics.categoryDistribution).map(([category, value]) => (
                       <div key={category} className="flex justify-between text-sm">
                         <span className="capitalize">{category}:</span>
-                        <span>{value}</span>
+                        <span>{value.toFixed(2)}%</span>
                       </div>
                     ))
                   }
@@ -160,13 +160,13 @@ function Schedule() {
                 <div className="col-span-4 mt-4">
                   <h3 className="text-md font-medium mb-2">Subcategory Progress</h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {Object.entries(schedule.metrics.subcategoryProgress).map(([category, {passed, total}]) => (
+                    {Object.entries(schedule.metrics.subcategoryProgress).map(([category, { passed, total }]) => (
                       <div key={category} className="p-4 border rounded">
                         <h4 className="capitalize">{category}</h4>
                         <div className="relative pt-1">
                           <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                            <div 
-                              style={{ width: `${(passed/total) * 100}%` }}
+                            <div
+                              style={{ width: `${(passed / total) * 100}%` }}
                               className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
                             />
                           </div>
