@@ -52,7 +52,12 @@ export const useSchedule = () => {
       console.log('Generate schedule response:', data);
       
       if (data.success) {
-        setSchedule(data.data);
+        // Update this line to properly set schedule data
+        setSchedule({
+          courses: data.data.schedule,
+          metrics: data.data.metrics,
+          status: data.data.status
+        });
       } else {
         setError(data.message || 'Failed to generate schedule');
       }
