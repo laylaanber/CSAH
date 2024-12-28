@@ -24,6 +24,10 @@ const scheduleSchema = new mongoose.Schema({
       required: true,
       ref: 'CourseV2'
     },
+    courseName: {
+      type: String,
+      required: true
+    },
     section: {
       type: String,
       required: true
@@ -35,15 +39,23 @@ const scheduleSchema = new mongoose.Schema({
     days: {
       type: String,
       required: true,
-      enum: ['Sunday-Tuesday-Thursday', 'Monday-Wednesday']
+      enum: [
+        'Sunday-Tuesday-Thursday', 
+        'Monday-Wednesday',
+        'Sunday-Tuesday',
+        'Wednesday-Monday', 
+        'Thursday-Sunday-Tuesday',
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'N/A'
+      ]
     }
   }],
   // Store the calculated difficulty scores for analysis
   difficultyMetrics: {
-    totalDifficultyScore: {
-      type: Number,
-      required: true
-    },
     categoryDistribution: {
       networking: Number,
       hardware: Number,
@@ -64,6 +76,38 @@ const scheduleSchema = new mongoose.Schema({
       enum: ['too_hard', 'just_right', 'too_easy'],
     },
     comments: String
+  },
+  metrics: {
+    totalCreditHours: Number,
+    difficultyScore: {
+      score: Number,
+      level: String
+    },
+    balanceScore: Number,
+    categoryDistribution: {
+      networking: Number,
+      hardware: Number,
+      software: Number,
+      electrical: Number
+    },
+    subcategoryProgress: {
+      networking: {
+        passed: Number,
+        total: Number
+      },
+      hardware: {
+        passed: Number,
+        total: Number
+      },
+      software: {
+        passed: Number,
+        total: Number
+      },
+      electrical: {
+        passed: Number,
+        total: Number
+      }
+    }
   }
 }, { timestamps: true });
 

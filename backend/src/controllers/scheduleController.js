@@ -21,18 +21,15 @@ const scheduleController = {
                 });
             }
 
+            // Ensure course names are included
             const courses = await Promise.all(
                 latestSchedule.courses.map(async (course) => {
+                    if (course.courseName) return course;
+                    
                     const fullCourse = await CourseV2.findOne({ courseId: course.courseId });
-                    if (!fullCourse) return course;
-
                     return {
                         ...course,
-                        courseName: fullCourse.courseName,
-                        creditHours: fullCourse.creditHours,
-                        description: fullCourse.description,
-                        subCategory: fullCourse.subCategory,
-                        details: fullCourse.details
+                        courseName: fullCourse?.courseName || 'Unknown Course'
                     };
                 })
             );
@@ -41,7 +38,8 @@ const scheduleController = {
                 success: true,
                 data: {
                     ...latestSchedule,
-                    schedule: courses
+                    schedule: courses,
+                    metrics: latestSchedule.metrics
                 }
             });
 
@@ -59,29 +57,46 @@ const scheduleController = {
         try {
             const student = req.student;
             
-            // Get preferences
-            const preferences = await PreferenceV2.findOne({ studentId: student.studentId });
+            // Get all necessary data with error handling
+            const [preferences, availableSections, availableCourses] = await Promise.all([
+                PreferenceV2.findOne({ studentId: student.studentId }),
+                AvailableSectionV2.findOne(),
+                CourseV2.find().lean()
+            ]).catch(error => {
+                throw new Error('Failed to fetch required data: ' + error.message);
+            });
+
+            // Validate required data
             if (!preferences) {
                 return res.status(400).json({
                     success: false,
                     message: 'Please set your preferences before generating a schedule'
                 });
             }
-    
-            // Get available sections
-            const availableSections = await AvailableSectionV2.findOne();
-            if (!availableSections) {
+
+            if (!availableSections?.courses?.length) {
                 return res.status(400).json({
                     success: false,
                     message: 'No available sections found for current semester'
                 });
             }
-    
-            // Get all courses with complete details
-            const availableCourses = await CourseV2.find({}).lean();
+
+            if (!availableCourses?.length) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'No available courses found'
+                });
+            }
+
             console.log('Total available courses:', availableCourses.length);
-    
-            const generator = new ScheduleGenerator(student.studentId, preferences, availableSections, student);
+
+            const generator = new ScheduleGenerator(
+                student.studentId, 
+                preferences, 
+                availableSections, 
+                student
+            );
+
             const result = await generator.generateSchedule(availableCourses);
     
             if (!result.success) {
@@ -90,28 +105,45 @@ const scheduleController = {
                     message: result.message
                 });
             }
-    
-            // No need to enrich schedule here as it's already complete
+
+            // Fetch course names and add to schedule
+            const coursesWithNames = await Promise.all(
+                result.schedule.map(async (course) => {
+                    const fullCourse = await CourseV2.findOne({ courseId: course.courseId });
+                    return {
+                        ...course,
+                        courseName: fullCourse?.courseName || 'Unknown Course'
+                    };
+                })
+            );
+
+            // Calculate total credit hours
+            const totalCreditHours = coursesWithNames.reduce((sum, course) => sum + course.creditHours, 0);
+
+            // Create schedule with required fields
             const schedule = new ScheduleV2({
                 studentId: student.studentId,
                 semester: `${new Date().getFullYear()}-${Math.floor(new Date().getMonth() / 6) + 1}`,
-                totalCreditHours: result.metrics.totalCreditHours,
-                courses: result.schedule,
-                difficultyMetrics: {
-                    totalDifficultyScore: result.metrics.difficultyScore,
-                    balanceScore: result.metrics.balanceScore,
-                    categoryDistribution: result.metrics.categoryDistribution
+                totalCreditHours, // Add this line
+                courses: coursesWithNames,
+                metrics: {
+                    ...result.metrics,
+                    totalCreditHours // Ensure this is included in metrics
                 },
                 status: 'generated'
             });
-    
+
             await schedule.save();
-    
+
+            // Update the response in generateSchedule
             res.json({
                 success: true,
                 data: {
-                    schedule: result.schedule,
-                    metrics: result.metrics,
+                    schedule: coursesWithNames,
+                    metrics: {
+                        ...result.metrics,
+                        totalCreditHours
+                    },
                     status: 'generated'
                 }
             });
