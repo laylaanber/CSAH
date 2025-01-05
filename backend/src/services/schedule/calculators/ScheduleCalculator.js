@@ -2,6 +2,24 @@ const { PRIORITIES, SCHEDULING_RULES, LAB_CONSTRAINTS } = require('../constants/
 const ChainCalculator = require('./ChainCalculator');
 const ScheduleLogger = require('../ScheduleLogger');
 
+const CATEGORY_BALANCE = {
+    'متطلبات الجامعة الإجبارية': { min: 0, max: 1 },
+    'متطلبات الجامعة الاختيارية': { min: 0, max: 1 },
+    'متطلبات إجبارية عامة': { min: 0, max: 1 },
+    'متطلبات الكلية الإجبارية': { min: 1, max: 3 },
+    'متطلبات التخصص الإجبارية': { min: 3, max: 4 },
+    'متطلبات التخصص الاختيارية': { min: 1, max: 2 }
+};
+
+const CATEGORY_WEIGHTS = {
+    'متطلبات التخصص الإجبارية': 0.35,
+    'متطلبات التخصص الاختيارية': 0.25,
+    'متطلبات الكلية الإجبارية': 0.20,
+    'متطلبات الجامعة الإجبارية': 0.10,
+    'متطلبات الجامعة الاختيارية': 0.05,
+    'متطلبات إجبارية عامة': 0.05
+};
+
 class ScheduleCalculator {
     constructor(student, preferences, courseDetails) {
         this.student = student;
@@ -12,43 +30,32 @@ class ScheduleCalculator {
     }
 
     calculatePriority(course) {
-        const weights = {
-            failedCourse: 1000,
-            improvementCourse: 800,
-            coreLab: 600,
-            chainValue: 400,
-            preferredCategory: 200
-        };
-
+        // Initialize priority
         let priority = 0;
 
-        // Calculate chain value
+        // Calculate chain value first
         const chainScores = this.chainCalculator.calculateChainScore(course);
-        const chainValue = (chainScores.forward * 0.7) + (chainScores.backward * 0.3);
-        priority += chainValue * weights.chainValue;
+        const chainValue = (chainScores.forward * 0.7 + chainScores.backward * 0.3);
+        
+        // High priority for foundation courses with high chain value
+        if (course.description === 'متطلبات إجبارية عامة' && chainValue > 0) {
+            priority += chainValue * 300; // Increase multiplier for chain value
+        }
 
-        // Failed course highest priority
+        // Add other priority factors
         if (this.isFailed(course)) {
-            priority += weights.failedCourse;
+            priority += Number.MAX_SAFE_INTEGER;
+        } else if (this.isImprovement(course)) {
+            priority += 800;
         }
 
-        // Improvement requests high priority
-        if (this.isImprovement(course)) {
-            priority += weights.improvementCourse;
-        }
-
-        // Core labs priority
-        if (['0302111', '0907101'].includes(course.courseId)) {
-            priority += weights.coreLab;
-        }
-
-        // Chain value consideration
-        priority += this.calculateChainValue(course.courseId) * weights.chainValue;
-
-        // Category preferences
-        if (this.preferences.categoryPreferences[course.subCategory] === 'prefer') {
-            priority += weights.preferredCategory;
-        }
+        // Log priority calculation
+        this.logger.logProgress('Priority calculation', {
+            courseId: course.courseId,
+            description: course.description,
+            chainValue,
+            finalPriority: priority
+        });
 
         return priority;
     }
@@ -72,27 +79,46 @@ class ScheduleCalculator {
     }
 
     calculateDifficultyScore(schedule) {
+        if (!Array.isArray(schedule)) {
+            this.logger.logError('Invalid schedule format in difficulty calculation');
+            return { score: 0, level: 'Error' };
+        }
+
         const MAX_DIFFICULTY_PER_COURSE = 10;
         
         const totalScore = schedule.reduce((total, course) => {
-            // Base difficulty
-            let baseDifficulty = SCHEDULING_RULES.DIFFICULTY_BASE[course.description] || 1;
+            // Log start of course difficulty calculation
+            this.logger.logProgress('Calculating course difficulty', {
+                courseId: course.courseId,
+                courseName: course.courseName
+            });
 
-            // Components
+            // Base difficulty by category
+            const baseDifficulty = SCHEDULING_RULES.DIFFICULTY_BASE[course.description] || 1;
+            
+            // Component scores
             const components = {
-                lab: course.details?.isLab ? 2 : 0,
-                projects: (course.details?.numProjects || 0) * 1.5,
-                quizzes: (course.details?.numQuizzes || 0) * 0.5,
-                assignments: (course.details?.numAssignments || 0) * 0.5,
-                credits: course.creditHours * 0.5,
-                categoryPreference: this.getCategoryPreferenceFactor(course),
-                historicalPerformance: this.getHistoricalPerformanceFactor(course)
+                // Course structural difficulty
+                structure: this.getStructuralDifficulty(course, schedule),
+                performance: this.getHistoricalPerformanceFactor(course),
+                chainImpact: this.getChainValueImpact(course),
+                timeManagement: this.getTimeManagementScore(course, schedule),
+                preference: this.getCategoryPreferenceFactor(course)
             };
 
+            // Calculate final course difficulty
             const courseDifficulty = Math.min(
                 baseDifficulty * Object.values(components).reduce((sum, val) => sum + val, 0),
                 MAX_DIFFICULTY_PER_COURSE
             );
+
+            // Log detailed difficulty breakdown
+            this.logger.logProgress('Course difficulty breakdown', {
+                courseId: course.courseId,
+                baseDifficulty,
+                components,
+                finalScore: courseDifficulty
+            });
 
             return total + courseDifficulty;
         }, 0);
@@ -100,25 +126,264 @@ class ScheduleCalculator {
         const maxPossibleScore = schedule.length * MAX_DIFFICULTY_PER_COURSE;
         const difficultyPercentage = (totalScore / maxPossibleScore) * 100;
 
+        // Log overall schedule difficulty
+        this.logger.logProgress('Schedule difficulty calculation complete', {
+            totalScore,
+            maxPossible: maxPossibleScore,
+            percentage: difficultyPercentage,
+            level: this.getDifficultyLevel(difficultyPercentage)
+        });
+
         return {
             score: Math.round(difficultyPercentage),
             level: this.getDifficultyLevel(difficultyPercentage)
         };
     }
 
-    calculateBalanceScore(schedule) {
-        const { categoryDist, subCategoryDist } = this.calculateDistributions(schedule);
+    getStructuralDifficulty(course, schedule) {
+        if (!course?.details) return 0;
 
-        const WEIGHTS = {
-            CATEGORY: 0.4,
-            SUBCATEGORY: 0.6
+        const components = {
+            lab: course.details.isLab ? 2 : 0,
+            projects: (course.details.numProjects || 0) * 1.5,
+            quizzes: (course.details.numQuizzes || 0) * 0.5,
+            assignments: (course.details.numAssignments || 0) * 0.5,
+            examType: this.getExamTypeScore(course.details.examType, schedule)
         };
 
-        const categoryBalance = this.calculateDistributionBalance(categoryDist);
-        const subCategoryBalance = this.calculateDistributionBalance(subCategoryDist);
+        // Log component breakdown
+        this.logger.logProgress('Structural difficulty components', {
+            courseId: course.courseId,
+            ...components
+        });
 
-        return Math.round((categoryBalance * WEIGHTS.CATEGORY) + 
-                         (subCategoryBalance * WEIGHTS.SUBCATEGORY));
+        return Object.values(components).reduce((sum, val) => sum + val, 0);
+    }
+
+    getExamTypeScore(examType, schedule) {
+        const scores = {
+            'first-second': 2.5,  // Increase weight
+            'mid-final': 1.5,     
+            'practical': 1.0
+        };
+        
+        // Check exam type combinations in schedule
+        const hasMultipleTypes = schedule.some(c => 
+            c.details?.examType !== examType
+        );
+        
+        return scores[examType] * (hasMultipleTypes ? 1.3 : 1);
+    }
+
+    getTimeManagementScore(course, schedule) {
+        let score = 0;
+
+        // Projects increase time management difficulty
+        if (course.details?.numProjects) {
+            score += course.details.numProjects * 1.5;
+        }
+
+        // Frequent assessments (quizzes/assignments) add complexity
+        const assessmentCount = (course.details?.numQuizzes || 0) + 
+                              (course.details?.numAssignments || 0);
+        score += assessmentCount * 0.3;
+
+        // Lab courses require additional time commitment
+        if (this.isLabCourse(course)) {
+            score += 1.5;
+        }
+
+        // Check for multiple exam types in schedule
+        if (schedule && course.details?.examType) {
+            const hasMultipleTypes = schedule.some(c => 
+                c !== course && 
+                c.details?.examType && 
+                c.details.examType !== course.details.examType
+            );
+            if (hasMultipleTypes) {
+                score *= 1.3; // 30% increase for mixed exam types
+            }
+        }
+
+        this.logger.logProgress('Time management factors', {
+            courseId: course.courseId,
+            projectImpact: course.details?.numProjects * 1.5,
+            assessmentImpact: assessmentCount * 0.3,
+            labImpact: this.isLabCourse(course) ? 1.5 : 0,
+            totalScore: score
+        });
+
+        return score;
+    }
+
+    getChainValueImpact(course) {
+        const chainScores = this.chainCalculator.calculateChainScore(course);
+        // Reduce normalization factor to increase impact
+        return (chainScores.forward * 0.7 + chainScores.backward * 0.3) / 20;
+    }
+
+    getDifficultyLevel(percentage) {
+        if (percentage >= 80) return "Very Challenging";
+        if (percentage >= 65) return "Challenging";
+        if (percentage >= 45) return "Moderate";
+        if (percentage >= 30) return "Manageable";
+        return "Basic";
+    }
+
+    calculateBalanceScore(schedule) {
+        const categoryScore = this.calculateCategoryBalance(schedule);
+        const subcategoryScore = this.calculateSubcategoryBalance(schedule);
+
+        // Calculate distributions for logging
+        const distributions = this.calculateDistributions(schedule);
+
+        this.logger.logProgress('Balance calculation details', {
+            categoryDistribution: distributions.categoryDist,
+            subcategoryDistribution: distributions.subCategoryDist,
+            finalScores: {
+                category: categoryScore,
+                subcategory: subcategoryScore,
+                final: Math.round((categoryScore * 0.7) + (subcategoryScore * 0.3))
+            }
+        });
+
+        return Math.round((categoryScore * 0.7) + (subcategoryScore * 0.3));
+    }
+
+    calculateCategoryBalance(schedule) {
+        const availableCats = Object.entries(CATEGORY_BALANCE)
+            .filter(([category]) => this.hasAvailableCoursesInCategory(category));
+        
+        let totalScore = 0;
+        let totalWeight = 0;
+
+        for (const [category, limits] of availableCats) {
+            const count = schedule.filter(course => course.description === category).length;
+            const weight = CATEGORY_WEIGHTS[category] || 0.1;
+            
+            let categoryScore;
+            if (count < limits.min) {
+                categoryScore = (count / limits.min) * 100;
+            } else if (count > limits.max) {
+                // Much stronger penalty for exceeding max
+                categoryScore = Math.max(0, 100 - ((count - limits.max) / limits.max * 300));
+            } else {
+                categoryScore = 100;
+            }
+
+            // Apply extra penalty for متطلبات إجبارية عامة if more than one
+            if (category === 'متطلبات إجبارية عامة' && count > 1) {
+                categoryScore = 0;
+            }
+
+            totalScore += categoryScore * weight;
+            totalWeight += weight;
+
+            this.logger.logProgress('Category balance', {
+                category,
+                count,
+                limits,
+                weight,
+                score: categoryScore,
+                weightedScore: categoryScore * weight
+            });
+        }
+
+        return Math.round(totalWeight ? totalScore / totalWeight : 100);
+    }
+
+    calculateSubcategoryBalance(schedule) {
+        const relevantCategories = [
+            'متطلبات الكلية الإجبارية',
+            'متطلبات التخصص الإجبارية',
+            'متطلبات التخصص الاختيارية'
+        ];
+
+        const weights = this.calculateSubcategoryWeights(relevantCategories);
+        const scheduledSubcats = new Set(
+            schedule
+                .filter(c => relevantCategories.includes(c.description))
+                .map(c => c.subCategory)
+                .filter(Boolean)
+        );
+
+        // Required minimum coverage per category type
+        const minCoverage = {
+            'متطلبات التخصص الإجبارية': 0.7,
+            'متطلبات التخصص الاختيارية': 0.4,
+            'متطلبات الكلية الإجبارية': 0.5
+        };
+
+        let score = 0;
+        let totalWeight = 0;
+
+        Object.entries(weights).forEach(([subcat, weight]) => {
+            const categoryType = this.getSubcategoryMainCategory(subcat);
+            const minRequired = minCoverage[categoryType] || 0.4;
+            
+            totalWeight += weight * minRequired;
+            if (scheduledSubcats.has(subcat)) {
+                score += weight;
+            }
+        });
+
+        const coverageScore = Math.round((score / totalWeight) * 100);
+
+        this.logger.logProgress('Subcategory balance', {
+            weights,
+            scheduledSubcategories: Array.from(scheduledSubcats),
+            coverageRequired: totalWeight,
+            actualCoverage: score,
+            finalScore: coverageScore
+        });
+
+        return coverageScore;
+    }
+
+    getAvailableSubcategories(categories) {
+        return Array.from(this.courseDetails.values())
+            .filter(course => 
+                categories.includes(course.description) && 
+                course.subCategory &&
+                !this.student.completedCourses.some(c => 
+                    c.courseId === course.courseId && 
+                    !['F', 'D-'].includes(c.grade)
+                )
+            )
+            .map(c => c.subCategory)
+            .filter(Boolean);
+    }
+
+    hasAvailableCoursesInCategory(category) {
+        return Array.from(this.courseDetails.values()).some(course => 
+            course.description === category && 
+            !this.student.completedCourses.some(c => 
+                c.courseId === course.courseId && 
+                !['F', 'D-'].includes(c.grade)
+            )
+        );
+    }
+
+    calculateSubcategoryWeights(categories) {
+        const weights = {};
+        let total = 0;
+
+        // Count courses per subcategory
+        Array.from(this.courseDetails.values())
+            .filter(course => categories.includes(course.description))
+            .forEach(course => {
+                if (course.subCategory) {
+                    weights[course.subCategory] = (weights[course.subCategory] || 0) + 1;
+                    total++;
+                }
+            });
+
+        // Convert to percentages
+        Object.keys(weights).forEach(key => {
+            weights[key] = weights[key] / total;
+        });
+
+        return weights;
     }
 
     calculateTotalCredits(schedule) {
@@ -144,13 +409,6 @@ class ScheduleCalculator {
 
         const avgGrade = categoryGrades.reduce((a, b) => a + b) / categoryGrades.length;
         return avgGrade >= 3 ? 0.8 : avgGrade >= 2 ? 1 : 1.2;
-    }
-
-    getDifficultyLevel(percentage) {
-        if (percentage >= 80) return "Very Challenging";
-        if (percentage >= 60) return "Challenging";
-        if (percentage >= 40) return "Moderate";
-        return "Manageable";
     }
 
     gradeToNumber(grade) {
@@ -369,6 +627,13 @@ class ScheduleCalculator {
     isImprovement(course) {
         return this.preferences.coursesToImprove?.includes(course.courseId) &&
                !this.isFailed(course);
+    }
+
+    getSubcategoryMainCategory(subcat) {
+        // Implementation depends on your data structure
+        const course = Array.from(this.courseDetails.values())
+            .find(c => c.subCategory === subcat);
+        return course?.description || '';
     }
 }
 

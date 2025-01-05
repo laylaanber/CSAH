@@ -178,9 +178,69 @@ class ScheduleGenerator {
     }
 
     filterEligibleCourses(courses) {
-        return courses.filter(course => 
+        // Group courses by basic category
+        const basicCoursesByCategory = {};
+        SCHEDULING_RULES.BASIC_CATEGORIES.forEach(category => {
+            basicCoursesByCategory[category] = courses.filter(course => 
+                course.description === category &&
+                !this.student.completedCourses?.some(c => 
+                    c.courseId === course.courseId && 
+                    (c.grade === 'P' || (!['F', 'D-'].includes(c.grade)))
+                )
+            );
+        });
+
+        // Calculate chain values and sort for each category
+        const prioritizedByCategory = {};
+        Object.entries(basicCoursesByCategory).forEach(([category, categoryCourses]) => {
+            prioritizedByCategory[category] = categoryCourses
+                .map(course => ({
+                    ...course,
+                    chainValue: this.calculator.chainCalculator.calculateChainScore(course)
+                }))
+                .sort((a, b) => {
+                    const aValue = a.chainValue.forward + a.chainValue.backward;
+                    const bValue = b.chainValue.forward + b.chainValue.backward;
+                    return bValue - aValue;
+                });
+        });
+
+        // Select top course from each category with available courses
+        const selectedBasicCourses = [];
+        Object.entries(prioritizedByCategory)
+            .filter(([_, courses]) => courses.length > 0)
+            .sort((a, b) => {
+                const maxChainA = Math.max(...a[1].map(c => c.chainValue.forward + c.chainValue.backward));
+                const maxChainB = Math.max(...b[1].map(c => c.chainValue.forward + c.chainValue.backward));
+                return maxChainB - maxChainA;
+            })
+            .slice(0, 1) // Take top 1 categories
+            .forEach(([category, courses]) => {
+                if (courses.length > 0) {
+                    selectedBasicCourses.push(courses[0]); // Take top course from category
+                }
+            });
+
+        // Get non-basic courses
+        const otherCourses = courses.filter(course => 
+            !SCHEDULING_RULES.BASIC_CATEGORIES.includes(course.description) &&
             this.validator.isEligible(course, this.student.completedCourses)
         );
+
+        this.logger.logProgress('Course filtering', {
+            basicCategoryCounts: Object.fromEntries(
+                Object.entries(basicCoursesByCategory)
+                    .map(([k, v]) => [k, v.length])
+            ),
+            selectedBasicCourses: selectedBasicCourses.map(c => ({
+                courseId: c.courseId,
+                category: c.description,
+                chainValue: c.chainValue
+            })),
+            otherCoursesCount: otherCourses.length
+        });
+
+        return [...selectedBasicCourses, ...otherCourses];
     }
 
     getCreditTargets() {
@@ -228,6 +288,36 @@ class ScheduleGenerator {
     async buildSchedule(prioritizedCourses, targetCredits) {
         let schedule = [];
         let currentCredits = 0;
+
+        // First add all failed courses
+        const failedCourses = prioritizedCourses.filter(course => 
+            this.calculator.isFailed(course)
+        );
+
+        this.logger.logProgress('Processing failed courses', {
+            count: failedCourses.length,
+            courses: failedCourses.map(c => c.courseId)
+        });
+
+        // Add each failed course first
+        for (const course of failedCourses) {
+            const section = await this.findCompatibleSection(course, schedule);
+            if (section) {
+                schedule.push(section);
+                currentCredits += section.creditHours;
+            } else {
+                this.logger.logError('Could not find section for failed course', {
+                    courseId: course.courseId
+                });
+                return null; // Failed to add required course
+            }
+        }
+
+        // Then add other courses
+        const remainingCourses = prioritizedCourses.filter(course => 
+            !failedCourses.some(f => f.courseId === course.courseId)
+        );
+
         let labCount = 0;
         let basicCategoryCount = 0;
 
@@ -259,7 +349,7 @@ class ScheduleGenerator {
         };
 
         // Sort courses by credit hours descending
-        const sortedCourses = [...prioritizedCourses]
+        const sortedCourses = [...remainingCourses]
             .sort((a, b) => (b.creditHours || 0) - (a.creditHours || 0));
 
         // Try to fill schedule to target
@@ -439,7 +529,8 @@ class ScheduleGenerator {
         const priorityCategories = [
             'متطلبات التخصص الإجبارية',
             'متطلبات الكلية الإجبارية',
-            'متطلبات الجامعة الإجبارية'
+            'متطلبات الجامعة الإجبارية',
+            'متطلبات إجبارية عامة'  // Add this category
         ];
 
         return Array.from(this.courseDetails.values())
@@ -451,35 +542,47 @@ class ScheduleGenerator {
         if (currentCredits + (course.creditHours || 0) > targetCredits + 1) {
             return true;
         }
-
+    
         // Lab check
         if (this.isLabCourse(course) && labCount >= LAB_CONSTRAINTS.MAX_LABS) {
             return true;
         }
-
-        // Basic category check
-        const basicCount = schedule.filter(c => SCHEDULING_RULES.BASIC_CATEGORIES.includes(c.description)).length;
-        if (this.isBasicCategory(course) && basicCount >= 2) {
-            return true;
-        }
-
-        // University electives check
-        const uniElectiveCount = schedule.filter(c => c.description === 'متطلبات الجامعة الاختيارية').length;
-        if (course.description === 'متطلبات الجامعة الاختيارية' && uniElectiveCount >= 3) {
-            return true;
-        }
-
-        // Special handling for training course
-        if (course.courseId === '0947500' && this.semesterType === 'REGULAR') {
-            const otherCourses = schedule.filter(c => 
-                !['0977598', '0977599'].includes(c.courseId)
-            );
-            
-            if (otherCourses.length > 0) {
-                return true; // Can only be taken with project courses in regular semester
+    
+        // Count basic courses by category
+        const basicCourseCounts = schedule.reduce((counts, c) => {
+            if (SCHEDULING_RULES.BASIC_CATEGORIES.includes(c.description)) {
+                counts[c.description] = (counts[c.description] || 0) + 1;
+            }
+            return counts;
+        }, {});
+    
+        // Check متطلبات إجبارية عامة limit FIRST
+        if (course.description === 'متطلبات إجبارية عامة') {
+            const currentCount = basicCourseCounts['متطلبات إجبارية عامة'] || 0;
+            if (currentCount >= 1) {
+                this.logger.logProgress('Basic requirement limit exceeded', {
+                    type: 'basic_requirement',
+                    courseId: course.courseId,
+                    currentCount,
+                    allowed: false
+                });
+                return true;
             }
         }
-
+    
+        // Then check total basic category limit
+        const totalBasicCount = Object.values(basicCourseCounts).reduce((a, b) => a + b, 0);
+        if (SCHEDULING_RULES.BASIC_CATEGORIES.includes(course.description) && 
+            totalBasicCount >= 2) {
+            this.logger.logProgress('Basic category limit exceeded', {
+                type: 'basic_total',
+                courseId: course.courseId,
+                currentCount: totalBasicCount,
+                allowed: false
+            });
+            return true;
+        }
+    
         return false;
     }
 
@@ -494,6 +597,23 @@ class ScheduleGenerator {
     }
 
     validateScheduleResult(schedule) {
+        // First check that all failed courses are included
+        const failedCourses = this.getFailedCourses();
+        const missingFailed = failedCourses.filter(failed => 
+            !schedule.some(course => course.courseId === failed.courseId)
+        );
+
+        if (missingFailed.length > 0) {
+            this.logger.logError('Missing failed courses in schedule', {
+                missingCourses: missingFailed.map(c => c.courseId)
+            });
+            return {
+                isValid: false,
+                error: 'Schedule must include all failed courses'
+            };
+        }
+
+        // Rest of validation...
         if (!Array.isArray(schedule) || schedule.length === 0) {
             return {
                 isValid: false,
