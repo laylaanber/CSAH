@@ -12,6 +12,22 @@ const {
 
 class ScheduleGenerator {
     constructor(studentId, preferences, availableSections, student, feedback = null) {
+        // Initialize logger first
+        this.logger = new ScheduleLogger();
+        
+        // Initialize other dependencies with logger
+        this.calculator = new ScheduleCalculator(
+            student, 
+            preferences, 
+            new Map(availableSections.courses.map(c => [c.courseId, c]))
+        );
+        
+        this.validator = new ScheduleValidator(
+            this.determineSemesterType(),
+            student,
+            this.logger
+        );
+
         // Default preferences if none provided
         const defaultPreferences = {
             preferredDays: 'any',
@@ -27,9 +43,6 @@ class ScheduleGenerator {
             specificCourses: []
         };
 
-        // Initialize logger first
-        this.logger = new ScheduleLogger();
-        
         // Initialize preferences
         this.preferences = {
             ...defaultPreferences,
@@ -40,14 +53,6 @@ class ScheduleGenerator {
         this.courseDetails = new Map();
         this.initializeCourseDetails(availableSections.courses);
         
-        // Pass logger to dependencies
-        this.calculator = new ScheduleCalculator(student, preferences, this.courseDetails);
-        this.validator = new ScheduleValidator(
-            this.determineSemesterType(), 
-            student,
-            this.logger // Ensure logger is passed
-        );
-
         // Core properties
         this.studentId = studentId;
         this.availableSections = availableSections;

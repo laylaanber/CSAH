@@ -1,10 +1,14 @@
 const { PRIORITIES, SCHEDULING_RULES, LAB_CONSTRAINTS } = require('../constants/ScheduleConstants');
+const ChainCalculator = require('./ChainCalculator');
+const ScheduleLogger = require('../ScheduleLogger');
 
 class ScheduleCalculator {
-    constructor(student, preferences, courseDetails) {  // Add courseDetails parameter
+    constructor(student, preferences, courseDetails) {
         this.student = student;
         this.preferences = preferences;
-        this.courseDetails = courseDetails;  // Store courseDetails
+        this.courseDetails = courseDetails;
+        this.logger = new ScheduleLogger();
+        this.chainCalculator = new ChainCalculator(courseDetails, this.logger);
     }
 
     calculatePriority(course) {
@@ -17,6 +21,11 @@ class ScheduleCalculator {
         };
 
         let priority = 0;
+
+        // Calculate chain value
+        const chainScores = this.chainCalculator.calculateChainScore(course);
+        const chainValue = (chainScores.forward * 0.7) + (chainScores.backward * 0.3);
+        priority += chainValue * weights.chainValue;
 
         // Failed course highest priority
         if (this.isFailed(course)) {
