@@ -1,8 +1,42 @@
-const ScheduleGenerator = require('../services/scheduleService');
+const { 
+    ScheduleGenerator, 
+    ScheduleCalculator, 
+    ScheduleValidator 
+} = require('../services/schedule');
 const CourseV2 = require('../models/CourseV2');
 const PreferenceV2 = require('../models/PreferenceV2');
 const ScheduleV2 = require('../models/ScheduleV2');
 const AvailableSectionV2 = require('../models/AvailableSectionV2');
+
+const getCurrentSemester = () => {
+    const now = new Date();
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    
+    // Determine semester
+    let semester;
+    if (month >= 1 && month <= 5) {
+        semester = 2;  // Second semester
+    } else if (month >= 6 && month <= 8) {
+        semester = 3;  // Summer semester
+    } else {
+        semester = 1;  // First semester (Sep-Dec)
+    }
+
+    // Format as YYYY-S
+    const formatted = `${year}-${semester}`;
+    
+    console.log('Semester determination:', {
+        month,
+        year,
+        semester,
+        formatted,
+        currentData: '2024-1' // Hardcoded for development
+    });
+
+    // During development, return hardcoded value to match data
+    return '2024-1';
+};
 
 const scheduleController = {
     getCurrentSchedule: async (req, res) => {
@@ -55,105 +89,114 @@ const scheduleController = {
 
     generateSchedule: async (req, res) => {
         try {
-            const student = req.student;
-            
-            // Get all necessary data with error handling
-            const [preferences, availableSections, availableCourses] = await Promise.all([
-                PreferenceV2.findOne({ studentId: student.studentId }),
-                AvailableSectionV2.findOne(),
-                CourseV2.find().lean()
-            ]).catch(error => {
-                throw new Error('Failed to fetch required data: ' + error.message);
-            });
+            // 1. Get all required data in parallel
+            const [courses, sections, preferences] = await Promise.all([
+                CourseV2.find().lean(),
+                AvailableSectionV2.findOne().lean(),
+                PreferenceV2.findOne({ studentId: req.student.studentId }).lean()
+            ]);
 
-            // Validate required data
+            // 2. Validate preferences exist
             if (!preferences) {
                 return res.status(400).json({
                     success: false,
-                    message: 'Please set your preferences before generating a schedule'
+                    message: 'Student preferences not found. Please set preferences first.'
                 });
             }
 
-            if (!availableSections?.courses?.length) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'No available sections found for current semester'
-                });
-            }
+            console.log('Starting schedule generation for student:', req.student.studentId);
 
-            if (!availableCourses?.length) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'No available courses found'
-                });
-            }
-
-            console.log('Total available courses:', availableCourses.length);
-
-            const generator = new ScheduleGenerator(
-                student.studentId, 
-                preferences, 
-                availableSections, 
-                student
-            );
-
-            const result = await generator.generateSchedule(availableCourses);
-    
-            if (!result.success) {
-                return res.status(400).json({
-                    success: false,
-                    message: result.message
-                });
-            }
-
-            // Fetch course names and add to schedule
-            const coursesWithNames = await Promise.all(
-                result.schedule.map(async (course) => {
-                    const fullCourse = await CourseV2.findOne({ courseId: course.courseId });
-                    return {
-                        ...course,
-                        courseName: fullCourse?.courseName || 'Unknown Course'
-                    };
-                })
-            );
-
-            // Calculate total credit hours
-            const totalCreditHours = coursesWithNames.reduce((sum, course) => sum + course.creditHours, 0);
-
-            // Create schedule with required fields
-            const schedule = new ScheduleV2({
-                studentId: student.studentId,
-                semester: `${new Date().getFullYear()}-${Math.floor(new Date().getMonth() / 6) + 1}`,
-                totalCreditHours, // Add this line
-                courses: coursesWithNames,
-                metrics: {
-                    ...result.metrics,
-                    totalCreditHours // Ensure this is included in metrics
-                },
-                status: 'generated'
+            // 3. Create lookup map for courses
+            const courseMap = new Map();
+            courses.forEach(course => {
+                if (typeof course.creditHours === 'number') {
+                    courseMap.set(course.courseId, course);
+                } else {
+                    console.warn(`Course ${course.courseId} missing credit hours`);
+                }
             });
 
-            await schedule.save();
+            // 4. Validate sections data
+            if (!sections?.courses?.length) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'No sections available for current semester'
+                });
+            }
 
-            // Update the response in generateSchedule
+            // 5. Merge course data with sections
+            const enrichedSections = {
+                ...sections,
+                courses: sections.courses.map(section => ({
+                    ...section,
+                    ...courseMap.get(section.courseId)
+                }))
+            };
+
+            // 6. Debug logging
+            console.log('Data fetch results:', {
+                hasPreferences: !!preferences,
+                sectionsCount: enrichedSections.courses.length,
+                coursesCount: courses.length
+            });
+
+            // 7. Create generator
+            const generator = new ScheduleGenerator(
+                req.student.studentId,
+                preferences,
+                enrichedSections,
+                req.student
+            );
+
+            // 8. Generate schedule
+            const result = await generator.generateSchedule(courses);
+
+            // 9. Handle result
+            if (!result.success) {
+                return res.status(400).json(result);
+            }
+
+            // Calculate total credit hours from schedule
+            const totalCreditHours = result.schedule.reduce((sum, course) => 
+                sum + (course.creditHours || 0), 0);
+
+            // Create new schedule with required fields
+            const newSchedule = new ScheduleV2({
+                studentId: req.student.studentId,
+                courses: result.schedule,
+                metrics: result.metrics,
+                status: 'generated',
+                semester: getCurrentSemester(),
+                totalCreditHours // Add this field
+            });
+
+            // Validate before saving
+            const validationError = newSchedule.validateSync();
+            if (validationError) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Schedule validation failed',
+                    errors: validationError.errors
+                });
+            }
+
+            await newSchedule.save();
+
             res.json({
                 success: true,
                 data: {
-                    schedule: coursesWithNames,
-                    metrics: {
-                        ...result.metrics,
-                        totalCreditHours
-                    },
-                    status: 'generated'
+                    schedule: result.schedule,
+                    metrics: result.metrics,
+                    status: 'generated',
+                    totalCreditHours
                 }
             });
-    
+
         } catch (error) {
-            console.error('Error in generateSchedule:', error);
-            res.status(500).json({
+            console.error('Schedule generation error:', error);
+            res.status(500).json({ 
                 success: false,
-                message: 'Error generating schedule',
-                error: error.message
+                error: error.message 
             });
         }
     },

@@ -21,24 +21,14 @@ async function connectDB() {
 
 async function seedSections() {
     try {
-        await connectDB();
-        console.log('Starting section seeding...');
-        
-        // Clear existing sections
-        await AvailableSectionV2.deleteMany({});
-        console.log('Cleared existing sections');
-
-        // Insert new sections
-        const result = await AvailableSectionV2.create(sections);
-        console.log(`Seeded ${result.courses?.length || 0} courses with sections`);
-        
+        const sections = require('../data/courses_sections.json');
+        await AvailableSectionV2.deleteMany({}); // Clear existing
+        await AvailableSectionV2.create(sections);
+        console.log('Successfully seeded sections data');
     } catch (error) {
-        console.error('Seeding error:', error);
-    } finally {
-        await mongoose.connection.close();
-        console.log('Database connection closed');
-        process.exit(0);
+        console.error('Error seeding sections:', error);
     }
 }
 
+// Run this once to populate the database
 seedSections();

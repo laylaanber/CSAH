@@ -1,12 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 /* Import fonts */
 @import '@fontsource/cairo/index.css';
 @import '@fontsource/tajawal/index.css';
 @import '@fontsource/roboto/index.css';
 @import '@fontsource/inter/index.css';
+
+/* Then Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Then rest of CSS */
 
 @layer base {
   :root {

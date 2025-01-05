@@ -14,8 +14,14 @@ const scheduleSchema = new mongoose.Schema({
   totalCreditHours: {
     type: Number,
     required: true,
-    min: 12,
-    max: 18
+    min: [12, 'Total credit hours must be at least 12'],
+    max: [18, 'Total credit hours cannot exceed 18'],
+    validate: {
+      validator: function(v) {
+        return Number.isInteger(v);
+      },
+      message: 'Credit hours must be a whole number'
+    }
   },
   // Each course in the schedule includes time and section information
   courses: [{

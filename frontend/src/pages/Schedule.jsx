@@ -2,35 +2,52 @@
 import { useState } from 'react';
 import { useSchedule } from '../hooks/useSchedule';
 import { ScheduleDetailModal } from '../components/schedule/ScheduleDetailModal';
+import { ScheduleFeedback } from '../components/schedule/ScheduleFeedback';
 
 function Schedule() {
-  const { schedule, loading, error, generateNewSchedule, acceptSchedule, rejectSchedule } = useSchedule();
-
-  // Add debugging logs
-  console.log('Schedule component state:', {
-    hasSchedule: !!schedule,
-    courseCount: schedule?.courses?.length,
-    schedule: schedule
-  });
+  const { 
+    schedule, 
+    loading, 
+    error, 
+    generateNewSchedule, 
+    acceptSchedule, 
+    rejectSchedule, 
+    regenerateWithFeedback 
+  } = useSchedule();
 
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [feedbackError, setFeedbackError] = useState(null);
 
   const handleGenerateSchedule = async () => {
     try {
       setIsGenerating(true);
+      setFeedbackError(null);
       await generateNewSchedule();
-      // Add post-generation check
-      console.log('Schedule after generation:', schedule);
+    } catch (err) {
+      setFeedbackError(err.message);
     } finally {
       setIsGenerating(false);
     }
   };
 
-  const handleCourseClick = (course) => {
-    setSelectedCourse(course);
-    setIsModalOpen(true);
+  const handleFeedbackSubmit = async (feedback) => {
+    try {
+      setIsGenerating(true);
+      setFeedbackError(null);
+      await regenerateWithFeedback(feedback);
+    } catch (err) {
+      setFeedbackError(err.message);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  // Fix progress calculation
+  const calculateProgressWidth = (passed, total) => {
+    if (!total) return 0;
+    return Math.round((passed / total) * 100);
   };
 
   if (loading || isGenerating) {
@@ -42,11 +59,12 @@ function Schedule() {
     );
   }
 
-  if (error) {
+  // Show both main error and feedback error
+  if (error || feedbackError) {
     return (
       <div className="p-6 text-center">
         <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4">
-          {error}
+          {error || feedbackError}
         </div>
       </div>
     );
@@ -54,6 +72,7 @@ function Schedule() {
 
   return (
     <div className="p-6">
+      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Your Schedule</h1>
         <div className="space-x-4">
@@ -63,7 +82,7 @@ function Schedule() {
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 
                      disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Generate New Schedule
+            {isGenerating ? 'Generating...' : 'Generate New Schedule'}
           </button>
           {schedule?.status === 'generated' && (
             <>
@@ -86,8 +105,10 @@ function Schedule() {
         </div>
       </div>
 
+      {/* Schedule Content */}
       {schedule?.courses?.length > 0 ? (
-        <div>
+        <div className="space-y-6">
+          {/* Course Table */}
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="grid grid-cols-6 gap-4 p-4 bg-gray-50 font-medium">
               <div>Course ID</div>
@@ -112,7 +133,8 @@ function Schedule() {
             ))}
           </div>
 
-          <div className="mt-6 bg-white rounded-lg shadow p-6">
+          {/* Metrics */}
+          <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-lg font-semibold mb-4">Schedule Metrics</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {/* Existing metrics */}
@@ -155,7 +177,7 @@ function Schedule() {
                 </div>
               </div>
 
-              {/* Add subcategory progress */}
+              {/* Fixed Progress Bar */}
               {schedule?.metrics?.subcategoryProgress && (
                 <div className="col-span-4 mt-4">
                   <h3 className="text-md font-medium mb-2">Subcategory Progress</h3>
@@ -166,7 +188,7 @@ function Schedule() {
                         <div className="relative pt-1">
                           <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                             <div
-                              style={{ width: `${(passed / total) * 100}%` }}
+                              style={{ width: `${calculateProgressWidth(passed, total)}%` }}
                               className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
                             />
                           </div>
@@ -179,13 +201,19 @@ function Schedule() {
               )}
             </div>
           </div>
+
+          {/* Feedback Section */}
+          <div className="bg-white rounded-lg shadow">
+            <ScheduleFeedback onSubmit={handleFeedbackSubmit} />
+          </div>
         </div>
       ) : (
         <div className="text-center text-gray-600 mt-8">
-          {loading ? 'Loading...' : 'No schedule found. Click "Generate New Schedule" to create one.'}
+          No schedule found. Click "Generate New Schedule" to create one.
         </div>
       )}
 
+      {/* Course Detail Modal */}
       <ScheduleDetailModal
         course={selectedCourse}
         isOpen={isModalOpen}

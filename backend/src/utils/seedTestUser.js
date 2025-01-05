@@ -1,31 +1,29 @@
 const mongoose = require('mongoose');
 const StudentV2 = require('../models/StudentV2');
 const PreferenceV2 = require('../models/PreferenceV2');
+const ScheduleV2 = require('../models/ScheduleV2');
 require('dotenv').config();
 
 const studentTestData = {
-    studentId: "123456",
-    email: "test.student@ju.edu.jo",
-    password: "testpassword123",
-    academicYear: 3,
-    gpa: 3.2,
-    creditHours: 75,
+    studentId: '121212',
+    username: 'testuser',
+    password: 'test123',
+    name: 'Test User',
+    major: 'Computer Engineering',
+    creditHours: 45,
     completedCourses: [
-        // University Requirements
+        // Language courses
+        { courseId: "1902098", grade: "P", semester: "2021-1" },
+        { courseId: "3201098", grade: "P", semester: "2021-1" },
+        // ...existing courses...
         { courseId: "2220100", grade: "B+", semester: "2022-1" },
         { courseId: "3400100", grade: "A-", semester: "2022-1" },
         { courseId: "3400101", grade: "B", semester: "2022-1" },
         { courseId: "3400102", grade: "B+", semester: "2022-2" },
         { courseId: "0400101", grade: "A", semester: "2022-2" },
-        
-        // General Requirements
-        { courseId: "1902098", grade: "P", semester: "2022-1" },
         { courseId: "1932099", grade: "P", semester: "2022-1" },
-        { courseId: "3201098", grade: "P", semester: "2022-1" },
         { courseId: "3201099", grade: "P", semester: "2022-1" },
         { courseId: "3201100", grade: "B+", semester: "2022-1" },
-        
-        // Core Requirements with mixed grades
         { courseId: "0301101", grade: "C+", semester: "2022-1" },
         { courseId: "0301102", grade: "D+", semester: "2022-2" },
         { courseId: "0907101", grade: "B+", semester: "2022-1" },
@@ -34,39 +32,50 @@ const studentTestData = {
     ]
 };
 
+const preferenceTestData = {
+    studentId: '121212',
+    preferredDays: 'sun_tue_thu',
+    preferBreaks: 'yes',
+    targetCreditHours: 16,
+    categoryPreferences: {
+        networking: 'prefer',
+        hardware: 'neutral',
+        software: 'avoid',
+        electrical: 'neutral'
+    },
+    coursesToImprove: ['0301102', '0907342'],
+    specificCourses: []
+};
+
 async function seedTestUser() {
     try {
         await mongoose.connect(process.env.MONGODB_URI);
         console.log('Connected to MongoDB');
 
-        await StudentV2.findOneAndDelete({ studentId: studentTestData.studentId });
+        // Clear existing data
+        await Promise.all([
+            StudentV2.findOneAndDelete({ studentId: studentTestData.studentId }),
+            PreferenceV2.findOneAndDelete({ studentId: studentTestData.studentId }),
+            ScheduleV2.deleteMany({ studentId: studentTestData.studentId })
+        ]);
         
+        // Create new student
         const student = new StudentV2(studentTestData);
         await student.save();
-        console.log('Test student created with completed courses');
+        console.log('Test student created');
 
-        const preferenceData = {
-            studentId: studentTestData.studentId,
-            preferredDays: 'sun_tue_thu',
-            preferBreaks: 'yes',
-            targetCreditHours: 15,
-            categoryPreferences: {
-                networking: 'prefer',
-                hardware: 'neutral',
-                software: 'prefer',
-                electrical: 'neutral'
-            }
-        };
-
-        await PreferenceV2.findOneAndDelete({ studentId: studentTestData.studentId });
-        await PreferenceV2.create(preferenceData);
+        // Create preferences
+        const preference = new PreferenceV2(preferenceTestData);
+        await preference.save();
         console.log('Test preferences created');
 
-        console.log('All test data seeded successfully');
-        process.exit(0);
+        console.log('Test data seeded successfully');
+
     } catch (error) {
         console.error('Error seeding test data:', error);
-        process.exit(1);
+    } finally {
+        await mongoose.connection.close();
+        console.log('Database connection closed');
     }
 }
 

@@ -124,6 +124,40 @@ export const useSchedule = () => {
     }
   };
 
+  const regenerateWithFeedback = async (feedback) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch('http://localhost:5000/api/schedules/regenerate', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ feedback })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setSchedule({
+          courses: data.data.schedule,
+          metrics: data.data.metrics,
+          status: 'generated'
+        });
+      } else {
+        setError(data.message || 'Failed to regenerate schedule');
+      }
+    } catch (err) {
+      console.error('Schedule regeneration error:', err);
+      setError('Failed to regenerate schedule');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchCurrentSchedule();
   }, []);
@@ -135,6 +169,7 @@ export const useSchedule = () => {
     generateNewSchedule,
     acceptSchedule,
     rejectSchedule,
-    refreshSchedule: fetchCurrentSchedule
+    refreshSchedule: fetchCurrentSchedule,
+    regenerateWithFeedback
   };
 };
